@@ -10,7 +10,7 @@ public class TestDBConnection {
 		try {
 		// Load mysql connector.(JDBC driver class in method area) : Optional Step
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/dac22?useSSL=false&allowPublicKeyRetrieval=true";
+		String url = "jdbc:mysql://localhost:3306/cs1?useSSL=false&allowPublicKeyRetrieval=true";
 		//API of java.sql.Driver<Manager class
 		//public static Connection getConnection(url,uname,pwd) throws SQLException.
 		try(Connection cn=DriverManager.getConnection(url, "root", "root")){
