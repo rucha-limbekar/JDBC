@@ -22,7 +22,7 @@ public class TestPrepareStatement {
 			//execute the query : public ResultSet executeQuery() throws SQLExc
 			try(ResultSet rst=pst.executeQuery()){
 				while(rst.next()) {
-					System.out.printf("EmpID %d name %s Addess %s Salary %.1f DeptID &s JoinDate %s%n", 
+					System.out.printf("EmpID %d name %s Addess %s Salary %.1f DeptID %s JoinDate %s%n", 
 							rst.getInt(1), rst.getString(2), rst.getString(3), rst.getFloat(4), rst.getString(5),
 							rst.getString(6));
 				}
