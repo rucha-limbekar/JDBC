@@ -10,13 +10,15 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 	//state: instance var
 	private Connection cn;
 	private PreparedStatement pst1;
-	private PreparedStatement pst2;
+	private PreparedStatement pst2,pst3,pst4;
 	
 	//we need to get fix DB connection or any stmt exactly once , so will call constructor which do init time type job
 	public EmployeeDaoImpl() throws SQLException{
 		cn=openConnection();
 		pst1=cn.prepareStatement("select empid,name,salary,join_date from my_emp where deptid=? and join_date between ? and ?" );
 		pst2=cn.prepareStatement("insert into my_emp values(default,?,?,?,?,?)");//one is bydefault generated and rest of inputted by user
+		pst3=cn.prepareStatement("update my_emp set salary=salary+?,deptid=? where empid=?");
+		pst4=cn.prepareStatement("delete from my_emp where empid=?");
 		System.out.println("Employee DAO created !!!");//Just for debugging purpose
 	}
 
@@ -54,12 +56,42 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 		return "Insertion fail !!!!";
 	}
 
+	@Override
+	public String updateEmpDetails(int empId, double salIncr, String deptId) throws SQLException {
+		// need to set IN params
+		pst3.setDouble(1, salIncr);
+		pst3.setString(2, deptId);
+		pst3.setInt(3, empId);
+		//execute query
+		int updateCount=pst3.executeUpdate();
+		if(updateCount==1)  //above method returns either 1 or 0
+			return "Emp details updated...";
+		
+		return "updation fail !!!!";
+	}
+	
+
+	@Override
+	public String deleteEmployee(int empId) throws SQLException {
+		// need to set IN params
+		pst4.setInt(1, empId);
+		int updateCount=pst4.executeUpdate();
+		if(updateCount==1)  //above method returns either 1 or 0
+			return "Emp details deleted...";
+		
+		return "deletion fail !!!!";
+	}
+
 	//add a method to clean up DB resources (no need to close RST because we are returning it back as output.
 	public void cleanUp() throws SQLException{
 		if(pst1!=null)
 			pst1.close();
 		if(pst2!=null)
 			pst2.close();
+		if(pst3!=null)
+			pst3.close();
+		if(pst4!=null)
+			pst4.close();
 		if(cn!=null)
 			cn.close();
 		System.out.println("Emp DAO cleaned up");

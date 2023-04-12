@@ -19,4 +19,10 @@ public interface IEmployeeDao {
 
 	//add new employee
 	String addNewEmployee(Employee e) throws SQLException;
+	
+	//add a method to update emp dept and salary incr
+	String updateEmpDetails(int empId, double salIncr, String deptId) throws SQLException;
+	
+	//add a new method to delete employee
+	String deleteEmployee(int empId) throws SQLException;
 }
