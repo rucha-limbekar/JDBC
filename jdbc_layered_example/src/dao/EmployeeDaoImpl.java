@@ -32,7 +32,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 				emps.add(new Employee(rst.getInt(1), rst.getString(2), rst.getDouble(3), rst.getDate(4)));//col pos according to pst1
 			
 		}
-		return null;
+		return emps;
 	}
 	
 	//add a method to clean up DB resources (no need to close RST because we are returning it back as output.
