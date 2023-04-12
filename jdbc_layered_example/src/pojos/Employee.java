@@ -18,6 +18,16 @@ public class Employee {
 		// not required in JDBC BUT in Hibernate
 	}
 
+	//to collect specific data into DAO impl class
+	public Employee(int empId, String name, double salary, Date joinDate) {
+		super();
+		this.empId = empId;
+		this.name = name;
+		this.salary = salary;
+		this.joinDate = joinDate;
+	}
+
+
 	//getters and setters bcoz properties are private
 	public int getEmpId() {
 		return empId;
