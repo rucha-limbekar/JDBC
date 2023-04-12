@@ -17,4 +17,6 @@ public interface IEmployeeDao {
 	//add a method declaration for getting selected emps
 	List<Employee> getSelectedEmpDetails(String deptId, Date beginDate, Date endDate) throws SQLException;
 
+	//add new employee
+	String addNewEmployee(Employee e) throws SQLException;
 }

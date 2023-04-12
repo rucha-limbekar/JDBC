@@ -18,6 +18,7 @@ public class TestEmpCRUD {
 			boolean exit=false;
 			while(!exit) {
 				System.out.println("1. Get Employee Details");
+				System.out.println("2. Insert new Employee Details");
 				System.out.println("10. Exit");
 				try {
 					switch (sc.nextInt()) {
@@ -26,7 +27,11 @@ public class TestEmpCRUD {
 						List<Employee> empList=dao.getSelectedEmpDetails(sc.next(), Date.valueOf(sc.next()), Date.valueOf(sc.next()));
 						empList.forEach(System.out::println);
 						break;
-
+					case 2://Insert new Employee Details
+						System.out.println("Enter name ,addr,salary,deptid,join_date(YYYY-MM-DD)");
+						String res=dao.addNewEmployee(new Employee(sc.next(), sc.next(), sc.nextDouble(), sc.next(), Date.valueOf(sc.next())));
+						System.out.println(res);
+						break;
 					case 10:
 						exit=true;
 						//destroy or shut down phase , first we need to cleanup resources

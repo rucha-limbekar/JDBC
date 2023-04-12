@@ -26,6 +26,15 @@ public class Employee {
 		this.salary = salary;
 		this.joinDate = joinDate;
 	}
+	//add overloaded ctor for adding or inserting new employee 
+	public Employee(String name, String address, double salary, String deptId, Date joinDate) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.salary = salary;
+		this.deptId = deptId;
+		this.joinDate = joinDate;
+	}
 
 
 	//getters and setters bcoz properties are private
